@@ -60,6 +60,28 @@ class Database {
 
     }
 
+    async update(id, modification) {
+        const data = await this.getDataOfFile()
+        const index = data.findIndex(item => item.id === parseInt(id))
+
+        if(index === -1) {
+            throw Error('O herói informado não existe!')
+        }
+
+        const current = data[index]
+        const objectUpdated = {
+            ...current,
+            ...modification
+        }
+
+        data.splice(index, 1)
+
+        return await this.writeFile([
+            ...data,
+            objectUpdated
+        ])
+    }
+
 }
 
 module.exports = new Database()
