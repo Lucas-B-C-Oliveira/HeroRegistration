@@ -10,7 +10,7 @@ class Database {
         this.FILE_NAME = 'heroes.json'
     }
 
-    async getDateOfFile() {
+    async getDataOfFile() {
         const file = await readFileAsync(this.FILE_NAME, 'utf8')
         return JSON.parse(file.toString())
     }
@@ -21,7 +21,7 @@ class Database {
     }
 
     async register(hero) {
-        const data = await this.getDateOfFile()
+        const data = await this.getDataOfFile()
         const id = hero.id <= 2 ? hero.id : Date.now()
 
         const heroWithId = {
@@ -38,9 +38,26 @@ class Database {
     }
     
     async listar(id) {
-        const date = await this.getDateOfFile()
+        const date = await this.getDataOfFile()
         const filteredData = date.filter(item => (id ? (item.id === id) : true))
         return filteredData
+    }
+
+    async remove(id) {
+        if(!id) {
+            return await this.writeFile([])
+        }
+        
+        const data = await this.getDataOfFile()
+        const index = data.findIndex(item => item.id === parseInt(id))
+
+        if(index === -1) {
+            throw Error('O usuário informado não existe!!!')
+        }
+
+        data.splice(index, 1)
+        return await this.writeFile(data)
+
     }
 
 }

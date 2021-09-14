@@ -28,6 +28,10 @@ describe('Suite de manipulação de Heróis', () => {
         deepStrictEqual(current, expected)
     })
 
-    it('')
+    it('deve remover um herói por id', async () => {
+        const expected = true
+        const result = await database.remove(DEFAULT_OBJECT_RECORD.id)
+        deepStrictEqual(result, expected)
+    })
 
 })
