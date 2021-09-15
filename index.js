@@ -24,11 +24,11 @@ async function main() {
             delete hero.id
             const result = await Database.register(hero)
             if(!result) {
-                console.error('Herói não foi cadastrado!')
+                console.error('Hero has not been registered!')
                 return
             }
 
-            console.log('Herói cadastrado com sucesso!')
+            console.log('Hero registered successfully!')
         }
 
         if (Commander._optionValues.listar) {
@@ -42,11 +42,11 @@ async function main() {
             const result = await Database.remove(hero.id)
 
             if(!result) {
-                console.error('Não foi possível remover o herói')
+                console.error('Unable to remove hero')
                 return
             }
 
-            console.log('Herói removido com sucesso!')
+            console.log('Hero successfully removed!')
 
         }
 
@@ -57,15 +57,15 @@ async function main() {
             const result = await Database.update(idForUpdate, updateHero)
 
             if(!result) {
-                console.error('Não foi possível atualizar o herói')
+                console.error('Unable to update hero')
                 return
             }
-            console.log('Herói Atualizado com sucesso')
+            console.log('Hero successfully updated')
 
         }
         
     } catch (error) {
-        console.error('DEU RUIM ', error)
+        console.error('it was bad', error)
     }
 }
 

@@ -12,21 +12,21 @@ const DEFAULT_OBJECT_UPDATE = {
     id: 2
 }
 
-describe('Suite de manipulação de Heróis', () => {
+describe('Hero manipulation suite', () => {
 
     before(async () => {
         await database.register(DEFAULT_OBJECT_RECORD)
         await database.register(DEFAULT_OBJECT_UPDATE)
     })
 
-    it('deve pesquisar um herói usando arquivos', async () => {
+    it('must search for a hero using files', async () => {
         const expected = DEFAULT_OBJECT_RECORD
         const [result] = await database.listar(expected.id)
 
         deepStrictEqual(result, expected)
     })
 
-    it('deve cadastrar um herói, usando arquivos', async () => {
+    it('must register a hero, using files', async () => {
 
         const expected = DEFAULT_OBJECT_RECORD
         const result = await database.register(DEFAULT_OBJECT_RECORD)
@@ -34,13 +34,13 @@ describe('Suite de manipulação de Heróis', () => {
         deepStrictEqual(current, expected)
     })
 
-    it('deve remover um herói por id', async () => {
+    it('must remove a hero by id', async () => {
         const expected = true
         const result = await database.remove(DEFAULT_OBJECT_RECORD.id)
         deepStrictEqual(result, expected)
     })
 
-    it('deve atualizar um herói pelo id', async () => {
+    it('must update a hero by id', async () => {
         
         const expected = {
             ...DEFAULT_OBJECT_UPDATE,

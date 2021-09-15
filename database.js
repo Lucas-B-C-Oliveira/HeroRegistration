@@ -52,7 +52,7 @@ class Database {
         const index = data.findIndex(item => item.id === parseInt(id))
 
         if(index === -1) {
-            throw Error('O usuário informado não existe!!!')
+            throw Error('The informed hero does not exist!')
         }
 
         data.splice(index, 1)
@@ -65,7 +65,7 @@ class Database {
         const index = data.findIndex(item => item.id === parseInt(id))
 
         if(index === -1) {
-            throw Error('O herói informado não existe!')
+            throw Error('The informed hero does not exist!')
         }
 
         const current = data[index]
